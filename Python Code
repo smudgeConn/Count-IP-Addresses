@@ -1,0 +1,31 @@
+def ips_between(start, end):
+# input: two STRs in format "0.0.0.0"
+    print('Start:', start)
+    print('End:', end)
+# output: INT
+
+# variables
+    start_octets = []
+    end_octets = []
+    start_numbers = []
+    start_sum = 0
+    end_numbers = []
+    end_sum = 0
+    power_of_256 = [256**3, 256**2, 256, 1]
+# separate each octet
+    start_octets = start.split('.')
+    end_octets = end.split('.')
+# do the math to convert each octet
+    for i, octet in enumerate(start_octets):
+        octet = int(octet)*power_of_256[i]
+        start_numbers.append(int(octet))
+    for i, octet in enumerate(end_octets):
+        octet = int(octet)*power_of_256[i]
+        end_numbers.append(int(octet))
+# add the new numbers together
+    for number in start_numbers:
+        start_sum+=number
+    for number in end_numbers:
+        end_sum+=number
+    
+    return abs(start_sum - end_sum)
